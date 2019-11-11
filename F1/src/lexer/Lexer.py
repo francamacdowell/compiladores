@@ -1,3 +1,5 @@
+import re
+
 class Lexer(object):
 
     def __init__(self, source_code):
@@ -16,9 +18,30 @@ class Lexer(object):
 
         # Loop through the each word from the source code
         while source_index < len(source_code):
-            print(source_code[source_index])
+            word = source_code[source_index]
 
+            if word == 'var':
+                tokens.append(['VAR_DECLARATION', word])
+
+            elif re.match('[a-z]', word) or re.match('[A-Z]', word):
+                if word[len(word) - 1] == ';':
+                    tokens.append(['IDENTIFIER', word[0:len(word) - 1]])
+                else:
+                    tokens.append(['IDENTIFIER', word])
+
+            elif re.match('[0-9]', word):
+                if word[len(word) - 1] == ';':
+                    tokens.append(['INTEGER', word[0:len(word) - 1]])
+                else:
+                    tokens.append(['INTEGER', word])
+
+            elif word in "=/*=-+":
+                tokens.append(['OPERATOR', word])
+
+            # If a STATEMENT_END (;) is found, add STATEMENT_END token:
+            if word[len(word) - 1] == ';':
+                tokens.append(['STATEMENT_END', ';'])
             source_index += 1
-
+        print(tokens)
         #return created tokens
         return tokens
