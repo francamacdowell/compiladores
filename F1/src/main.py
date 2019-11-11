@@ -1,4 +1,5 @@
 from F1.src.lexer.Lexer import Lexer
+from F1.src.parser.Parser import Parser
 
 def main():
 
@@ -9,8 +10,11 @@ def main():
 
     # Call lexer with the Source Code
     lex = Lexer(content)
-    # Now create Tokens
+    # Now get the Tokens
     tokens = lex.tokenize()
 
+    # Start Parser Phase:
+    parse = Parser(tokens)
+    parse.parse()
 
 main()
