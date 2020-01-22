@@ -1,4 +1,4 @@
-from F1.src.Objects.varObject import VariableObject
+from Objects.varObject import VariableObject
 
 class Parser(object):
 

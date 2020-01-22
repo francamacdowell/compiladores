@@ -25,8 +25,10 @@ class Lexer(object):
 
             elif re.match('[a-z]', word) or re.match('[A-Z]', word):
                 if word[len(word) - 1] == ';':
+                    # check and add if token is identifier after assign ('=')
                     tokens.append(['IDENTIFIER', word[0:len(word) - 1]])
                 else:
+                    # add identifier token
                     tokens.append(['IDENTIFIER', word])
 
             elif re.match('[0-9]', word):
@@ -35,8 +37,29 @@ class Lexer(object):
                 else:
                     tokens.append(['INTEGER', word])
 
-            elif word in "=/*=-+":
-                tokens.append(['OPERATOR', word])
+            elif word in "=":
+                tokens.append(['ASSIGN_OPERATOR', word])
+
+            elif word in "==":
+                tokens.append(['EQUAL_COMPARE_OPERATOR', word])
+
+            elif word in "/":
+                tokens.append(['DIV_OPERATOR', word])
+
+            elif word in "*":
+                tokens.append(['MULT_OPERATOR', word])
+
+            elif word in "-":
+                tokens.append(['SUB_OPERATOR', word])
+
+            elif word in "+":
+                tokens.append(['SUM_OPERATOR', word])
+
+            # elif word in "=/*=-+":
+            #     tokens.append(['SUM_OPERATOR', word])
+
+            # elif word in "=/*=-+":
+            #     tokens.append(['SUM_OPERATOR', word])
 
             # If a STATEMENT_END (;) is found, add STATEMENT_END token:
             if word[len(word) - 1] == ';':

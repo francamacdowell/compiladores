@@ -1,5 +1,6 @@
-from F1.src.lexer.Lexer import Lexer
-from F1.src.parser.Parser import Parser
+from lexer.Lexer import Lexer
+from parser.Parser import Parser
+from Objects.varObject import VariableObject
 
 def main():
 
