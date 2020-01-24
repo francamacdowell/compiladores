@@ -1,6 +1,4 @@
 from lexer.Lexer import Lexer
-from parser.Parser import Parser
-from Objects.varObject import VariableObject
 
 def main():
 
@@ -13,9 +11,9 @@ def main():
     lex = Lexer(content)
     # Now get the Tokens
     tokens = lex.tokenize()
-
-    # Start Parser Phase:
-    parse = Parser(tokens)
-    parse.parse()
+    #
+    # # Start Parser Phase:
+    # parse = Parser(tokens)
+    # parse.parse()
 
 main()

@@ -55,16 +55,16 @@ class Lexer(object):
             elif word in "+":
                 tokens.append(['SUM_OPERATOR', word])
 
-            # elif word in "=/*=-+":
-            #     tokens.append(['SUM_OPERATOR', word])
+            elif word in "%":
+                tokens.append(['MOD_OPERATOR', word])
 
-            # elif word in "=/*=-+":
-            #     tokens.append(['SUM_OPERATOR', word])
+            elif word in "//":
+                tokens.append(['MOD_INT_OPERATOR', word])
 
             # If a STATEMENT_END (;) is found, add STATEMENT_END token:
             if word[len(word) - 1] == ';':
                 tokens.append(['STATEMENT_END', ';'])
             source_index += 1
+
         print(tokens)
-        #return created tokens
         return tokens
